@@ -6,6 +6,7 @@ import time
 
 TMod.setup()
 char = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#'
+password = ''
 
 
 def randompass():
@@ -24,9 +25,9 @@ def randompass():
     return password
 
 
-def ownpass():
-    global password
-    password = input('put ur pass>>> ')
+def ownpass(x):
+    x = input('put ur pass>>> ')
+    return 
 
 
 def brute():
@@ -48,22 +49,22 @@ def brute():
         else:
             addletter1 = addletter1 + 1
             timee = timee + 1
-        time.sleep(0.001)
+            time.sleep(0.001)
 
 
 choice = input('[random],[myown] which one>>> ')
 
 if choice == 'myown':
-    ownpass()
+    password = ownpass(password)
     brute()
     TMod.clear()
     print(figpass)
-    print('seconds it took', timee)
+    print('tries:', timee)
 elif choice == 'random':
     randompass()
     brute()
     TMod.clear()
     print(figpass)
-    print('seconds it took', timee)
+    print('tries:', timee)
 else:
     print('invalid choice')
