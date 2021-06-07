@@ -3,50 +3,38 @@
 #equation = newvar + 4 * 3 #divides the equation in both sides (answer + expression)
 # 4x + 3 = 15 is actually x = (15 - 3)/4
 
-#similar to the brute thing, check each character for each sign,
-#that way, we can get the position of each operator allowing us to check
-#the number or variable that is being used by the operator 
+#The code will gather the position of operators within a given equation, and then solve
+#the equation by going through the equation with the position of operators in order of 
+#operations.
 
-#AdditionSigns = "+"
-#AdditionPosition = [-1]
-#NegativeSigns = "-"
-#NegativePosition = [-1]
-#MultiplicationSigns = "*"
-#MultiplicationPosition = [-1]
-#DivisionSigns = "/"
-#DivisionPosition = [-1]
+import time
 
-#Perhaps their can be a list of position of operators and a function would check the
-#list and automatically do the math based off the operator that was found
-#live rather than being saved into individual list
-
-OperatorSigns = "+-*/÷^"
-OperatorPositions = []
+OperatorSigns = "-+*/÷^"
 
 equation = input("Submit your equation: ")
 
-EPosition = 0
-OPosition = 0
-ScanforOperator = ''
-AddtoList = []
-checkdone = False
-
-def markoperator():
-    for i in range(len(equation)):
-        if ScanforOperator == OperatorSigns:
-            AddtoList = AddtoList + ScanforOperator
-        position = position + 1
-
 def ImprovedMarkOperator():
-    
+    EPosition = 0
+    OSPosition = 0
+    AddtoList = []
+    checkdone = False
+    while EPosition != len(equation) - 1:
+    #one letter equation won't run (it is len(equation) - 1)
+        while True:
+            #originally was while checkdone == False:
+            if equation[EPosition] == OperatorSigns[OSPosition]:
+                AddtoList.append(EPosition)
+                break
+                checkdone == True
+            elif OSPosition == len(OperatorSigns) - 1:
+                break
+                checkdone = True
+            else:
+                OSPosition = OSPosition + 1
+        OSPosition = 0
+        EPosition = EPosition + 1
+        #checkdone = False
+    return AddtoList
 
-
-#issues before I come back,
-#ScanforOperator == OperatorSigns: only scans
-#the whole thing. We need to make it so it checks each
-#individual operator within the string, / and if statement
-#where if it contains a character within the string it passes.
-#Thinking about making a repeated loop where it == OperatorSigns[range]
-
-#A way to specifically find each operator in the list, similar to the brute, is to check each letter in the
-#inputted equation for the first position of the operator string, then another check for each position.
+OperatorPositions = ImprovedMarkOperator()
+print(OperatorPositions)

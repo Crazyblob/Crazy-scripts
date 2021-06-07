@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-import TMod
+#import TMod
 import random
 import time
 
-TMod.setup()
+#TMod.setup()
 char = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#'
 password = ''
 
@@ -39,7 +39,7 @@ def brute():
     addletter1 = 0
     guessright = 0
     while figpass != password:
-        TMod.clear()
+        #TMod.clear()
         print(figpass)
         theletter = char[addletter1]
         if theletter == password[guessright]:
@@ -57,13 +57,13 @@ choice = input('[random],[myown] which one>>> ')
 if choice == 'myown':
     password = ownpass(password)
     brute()
-    TMod.clear()
+    #TMod.clear()
     print(figpass)
     print('tries:', timee)
 elif choice == 'random':
     randompass()
     brute()
-    TMod.clear()
+    #TMod.clear()
     print(figpass)
     print('tries:', timee)
 else:
