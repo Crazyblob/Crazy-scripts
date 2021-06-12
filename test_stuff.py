@@ -1,5 +1,9 @@
-import New_Find_X
+import new_find_x
 
-variable = New_Find_X.ImprovedMarkOperator('4 + 3 / 2 ^ 3 - 2')
+equation = '4x + 3 = 5'
+operator_list = new_find_x.mark_operator(equation)
 
-print(variable)
+
+new_find_x.calculate(equation, operator_list)
+
+#equalsign = New_Find_X.calculate(equation, operator_list)

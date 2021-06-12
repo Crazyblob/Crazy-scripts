@@ -1,31 +1,50 @@
 #equation = newvar + 4 * 3 #divides the equation in both sides (answer + expression)
 # 4x + 3 = 15 is actually x = (15 - 3)/4
 
-#The code will gather the position of operators within a given equation, and then solve
-#the equation by going through the equation with the position of operators in order of 
-#operations.
+def mark_operator(equation):
+    operator_signs = "-+*/÷^="
+    add_to_list = []
+    e_position = 0
+    os_position = 0
 
-def ImprovedMarkOperator(equation):
-    EPosition = 0
-    OSPosition = 0
-    AddtoList = []
-    OperatorSigns = "-+*/÷^"
-    while EPosition != len(equation) - 1:
-    #one letter equation won't run (it is len(equation) - 1)
+    while e_position != len(equation) - 1:
         while True:
-            if equation[EPosition] == OperatorSigns[OSPosition]:
-                AddtoList.append(EPosition)
+            if equation[e_position] == operator_signs[os_position]:
+                add_to_list.append(e_position)
                 break
-            elif OSPosition == len(OperatorSigns) - 1:
+            elif os_position == len(operator_signs) - 1:
                 break
             else:
-                OSPosition = OSPosition + 1
-        OSPosition = 0
-        EPosition = EPosition + 1
-    return AddtoList
+                os_position = os_position + 1
+    
+        e_position = e_position + 1
+        os_position = 0
 
-#OperatorPositions = ImprovedMarkOperator(input('Submit your equation: '))
-#print(OperatorPositions)
+    return add_to_list
 
-#def calculate():
-#    OSPPosition = 0
+#returning the = position is needed. Perhaps include the = in add_to_list? It can be the
+#first sign to find in the pemdas sequence thing
+
+def calculate(equation, operator_list):
+    e_position = 0
+    ol_position = 0
+
+    while True:
+        if equation[operator_list[ol_position]] == '=':
+            e_position = operator_list[ol_position] + 1
+            while True: 
+                try: 
+                    norm = int(equation[e_position])
+                    break
+                except:
+                    e_position += 1
+            break
+        else:
+            ol_position += 1
+
+    print('norm is equal to:', norm)
+
+#can be structured by doing the opposite of pemdas to the most normal side (answer side)
+#in standard solving for x format. It'll just be a sequence of doing the opposite of 
+#pemdas on that normal side. For example: (4x + 3 = 15) 1. subtract 3 from 15 2. divide 4
+#from the right side
